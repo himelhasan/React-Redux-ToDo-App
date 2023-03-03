@@ -3,7 +3,8 @@ import notes from "../html_template/images/notes.png";
 import doubleTick from "../html_template/images/double-tick.png";
 import plus from "../html_template/images/plus.png";
 import { useDispatch } from "react-redux";
-import { addedAction } from "../Redux/todos/actions";
+import { addedAction, clearCompleted, completeAllAction } from "../Redux/todos/actions";
+import addTodoInServer from "../Redux/todos/thunk/addTodoInServer";
 
 const TodoHeader = () => {
   const dispatch = useDispatch();
@@ -16,8 +17,15 @@ const TodoHeader = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(addedAction(input));
+    dispatch(addTodoInServer(input));
     setInput("");
+  };
+
+  const completeAll = () => {
+    dispatch(completeAllAction());
+  };
+  const clearCompletedAll = () => {
+    dispatch(clearCompleted());
   };
 
   return (
@@ -41,11 +49,13 @@ const TodoHeader = () => {
       </form>
 
       <ul className="flex justify-between my-4 text-xs text-gray-500">
-        <li className="flex space-x-1 cursor-pointer">
+        <li className="flex space-x-1 cursor-pointer" onClick={completeAll}>
           <img className="w-4 h-4" src={doubleTick} alt="Complete" />
           <span>Complete All Tasks</span>
         </li>
-        <li className="cursor-pointer">Clear completed</li>
+        <li className="cursor-pointer" onClick={clearCompletedAll}>
+          Clear completed
+        </li>
       </ul>
     </div>
   );

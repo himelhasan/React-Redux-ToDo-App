@@ -6,6 +6,7 @@ import {
   DELETE,
   COMPLETE_ALL,
   CLEAR_COMPLETED,
+  LOADED,
 } from "./actionTypes";
 
 const nextTodoID = (todos) => {
@@ -25,6 +26,9 @@ const todoReducer = (state = initialTodoState, action) => {
           completed: false,
         },
       ];
+
+    case LOADED:
+      return action.payload;
 
     case TOGGLE_STATUS:
       return state.map((todo) => {

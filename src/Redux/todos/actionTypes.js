@@ -1,6 +1,7 @@
 //action identifiers
 
 export const ADDED = "todo/added";
+export const LOADED = "todo/loaded";
 export const TOGGLE_STATUS = "todo/togglestatus";
 export const COLOR_SELECT = "todo/colorselect";
 export const DELETE = "todo/delete";

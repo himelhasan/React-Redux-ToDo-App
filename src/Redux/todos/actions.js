@@ -5,12 +5,19 @@ import {
   DELETE,
   COMPLETE_ALL,
   CLEAR_COMPLETED,
+  LOADED,
 } from "./actionTypes";
 
 export const addedAction = (todoText) => {
   return {
     type: ADDED,
     payload: todoText,
+  };
+};
+export const loaded = (todos) => {
+  return {
+    type: LOADED,
+    payload: todos,
   };
 };
 
