@@ -1,4 +1,4 @@
-import { addedAction, loaded } from "../actions";
+import { addedAction } from "../actions";
 
 const addTodoInServer = (todo) => {
   return async (dispatch) => {

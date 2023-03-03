@@ -6,6 +6,9 @@ import {
   colorSelectAction,
   deleteAction,
 } from "../../Redux/todos/actions";
+import deleteTodoFromServer from "../../Redux/todos/thunk/deleteTodoFromServer";
+import updateColorFromServer from "../../Redux/todos/thunk/updateColorFromServer";
+import updateTodoStatusFromServer from "../../Redux/todos/thunk/updateTodoStatusFromServer";
 
 const TaskSingle = ({ todo }) => {
   const { text, id, completed, color } = todo;
@@ -13,22 +16,22 @@ const TaskSingle = ({ todo }) => {
   const dispatch = useDispatch();
 
   const handleStatusToggle = (todoID) => {
-    dispatch(toggleStatusAction(todoID));
+    dispatch(updateTodoStatusFromServer(todoID, completed));
   };
 
   const handleColorSelect = (todoID, getColor) => {
     console.log(todoID, getColor);
-    dispatch(colorSelectAction(todoID, getColor));
+    dispatch(updateColorFromServer(todoID, getColor));
   };
 
   const handleDelete = (todoID) => {
-    dispatch(deleteAction(todoID));
+    dispatch(deleteTodoFromServer(todoID));
   };
 
   return (
     <div className="flex justify-start items-center p-2 hover:bg-gray-100 hover:transition-all space-x-4 border-b border-gray-400/20 last:border-0">
       <div
-        className={`rounded-full bg-white border-2 border-gray-400 w-5 h-5 flex flex-shrink-0 justify-center items-center mr-2 ${
+        className={`relative rounded-full bg-white border-2 border-gray-400 w-5 h-5 flex flex-shrink-0 justify-center items-center mr-2 ${
           completed ? "border-green-500 focus-within:border-green-500" : ""
         }`}
       >
