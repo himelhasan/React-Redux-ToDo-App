@@ -8,10 +8,13 @@ const TodoList = () => {
   const allFilter = useSelector((state) => state.filterReducer);
   const { colors, status } = allFilter;
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(fetchTodos);
   }, [dispatch]);
+
   console.log(allTodo);
+
   const filterByStatus = (todo) => {
     switch (status) {
       case "Complete":

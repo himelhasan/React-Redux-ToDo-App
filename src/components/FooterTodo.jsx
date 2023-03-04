@@ -30,10 +30,8 @@ const FooterTodo = () => {
   const handleFilterColorChange = (color) => {
     if (colors.includes(color)) {
       dispatch(colorChange(color, "removed"));
-      console.log(allFilter);
     } else {
       dispatch(colorChange(color, "added"));
-      console.log(allFilter);
     }
   };
 
